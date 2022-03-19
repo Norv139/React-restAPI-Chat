@@ -1,7 +1,7 @@
 from flask import Flask, g, request
 from flask_restful import Resource, Api
 import sqlite3
-import json
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -31,6 +31,7 @@ class PostMessage(Resource):
             
             return "GOOD"
         except: 
+            print("Error", result)
             return "Error"
 
 api.add_resource(PostMessage, '/PostMessage')
@@ -41,9 +42,17 @@ class GetAnyMessage(Resource):
     def get(self): 
         conn = get_db_connection()
         posts = conn.execute('SELECT id_person, messages FROM Chat').fetchall()
+        
         conn.close()
 
-        return json.dumps( [dict(ix) for ix in posts], ensure_ascii=False)
+        _list = []
+        for ix in posts:
+            res = tuple(ix)
+            _list.append({"id_person" : res[0], "messages" : res[1]})
+
+        #print(_list)
+
+        return _list
 
 api.add_resource(GetAnyMessage, '/GetAnyMessage')
 

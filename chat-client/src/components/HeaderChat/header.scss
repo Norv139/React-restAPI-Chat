@@ -1,0 +1,36 @@
+.header_main_css{
+    position: absolute;
+    width: 100%;
+    
+    .main{
+        background-color: rgb(109, 109, 109);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        padding: 10px 20px 10px 20px;
+    
+    
+        .logo{
+            font-size: 29px;
+        }
+    }
+    
+
+
+
+}
+
+.btn{
+    cursor: pointer;
+    color: aqua !important;
+    text-decoration: underline;
+}
+
+a:active,
+a:hover,
+a{
+    color: aqua;
+    text-decoration: none;
+}
