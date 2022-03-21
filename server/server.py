@@ -21,11 +21,11 @@ class PostMessage(Resource):
         result = request.json
         try:
             _id_persone = result["id_person"]
-            _messages = result["messages"]
+            _message = result["message"]
 
             conn = get_db_connection()
             cur = conn.cursor()
-            cur.execute("INSERT INTO Chat (id_person, messages) VALUES (?,?)", (_id_persone, _messages))
+            cur.execute("INSERT INTO Chat (id_person, message) VALUES (?,?)", (_id_persone, _message))
             conn.commit()
             conn.close()
             
@@ -41,16 +41,15 @@ api.add_resource(PostMessage, '/PostMessage')
 class GetAnyMessage(Resource):
     def get(self): 
         conn = get_db_connection()
-        posts = conn.execute('SELECT id_person, messages FROM Chat').fetchall()
+        posts = conn.execute('SELECT id_person, message FROM Chat').fetchall()
         
         conn.close()
 
         _list = []
         for ix in posts:
             res = tuple(ix)
-            _list.append({"id_person" : res[0], "messages" : res[1]})
+            _list.append({"id_person" : res[0], "message" : res[1]}) # messages -> message
 
-        #print(_list)
 
         return _list
 

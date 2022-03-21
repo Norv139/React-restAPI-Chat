@@ -74,7 +74,7 @@ function App() {
               if (IMessege != "" && IDUser != null){
                 axios.post('/PostMessage', {
                   id_person: IDUser,
-                  messages: IMessege.value
+                  message: IMessege.value
                 })
                 .then(function (response) {
                   console.log(response);

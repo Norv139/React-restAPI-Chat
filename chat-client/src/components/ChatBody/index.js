@@ -14,7 +14,7 @@ function ChatBody(props){
                         (x)=>
                             <Create_massege
                                 name={x.id_person}
-                                messege={x.messages}
+                                messege={x.message}
                             />
                         )
                     }
