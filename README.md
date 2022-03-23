@@ -6,6 +6,6 @@
 3. python server.py
 
 # start front-and
-1. cd ./chat-client
+1. cd ./client
 2. npm install
 3. npm start
